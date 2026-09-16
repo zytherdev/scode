@@ -57,10 +57,11 @@ const SOCIALS: SocialLink[] = [
 ]
 
 const PRODUCT_LINKS = [
-  { name: "Home",          route: routes.home },
+  { name: "Home", route: routes.home },
   { name: "Documentation", route: routes.doc },
-  { name: "Encrypt",       route: routes.encrypt },
-  { name: "Decrypt",       route: routes.decrypt },
+  { name: "Encrypt", route: routes.encrypt },
+  { name: "Decrypt", route: routes.decrypt },
+  { name: "API", route: "https://api.scode.zyther.dev" },
 ]
 
 export default function Footer() {

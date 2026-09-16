@@ -10,10 +10,11 @@ type HeaderProps = {
 }
 
 const NAV_ITEMS = [
-  { name: "Home",          route: routes.home },
+  { name: "Home", route: routes.home },
   { name: "Documentation", route: routes.doc },
-  { name: "Encrypt",       route: routes.encrypt },
-  { name: "Decrypt",       route: routes.decrypt },
+  { name: "Encrypt", route: routes.encrypt },
+  { name: "Decrypt", route: routes.decrypt },
+  { name: "API", route: "https://api.scode.zyther.dev" },
 ]
 
 export default function Header({ dark, setDark }: HeaderProps) {
