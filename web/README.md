@@ -79,8 +79,8 @@ npm run preview
 - [x] Web app with 13+ ciphers
 - [x] Pattern composition system
 - [x] Decode document export (PDF / Word / TXT)
-- [ ] **Public API** — programmatic access to all ciphers
-- [ ] **npm package** — `@scode/core` for use in any JS/TS project
+- [x] **Public API** — programmatic access to all ciphers
+- [x] **npm package** — `@scode/core` for use in any JS/TS project
 - [ ] **CLI** — `scode encode --pattern "?" --message "hello"`
 - [ ] Plugin system for custom ciphers
 
