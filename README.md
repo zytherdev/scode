@@ -1,33 +1,139 @@
-### Overview
+<div align="center">
 
-Welcome to our website, a platform dedicated to converting messages using different types of manual coding. Our service is designed for those who want to transform messages into traditional, easy-to-understand codes, ensuring safe and fun communication.
+# SCode
 
-<details>
-  <summary>Main Features</summary>
-  
-  - **Message Encoding**  
-    Convert your messages into manual codes like Morse code. Our simple interface allows you to quickly encode messages, making them understandable only to those who know the encoding used.
-  
-  - **Message Decoding**  
-    Conveniently decrypt encoded messages back to their original format. If you receive a message in Morse code, for example, our website helps translate it into readable text.
-</details>
+**Hand-coding tools for classic ciphers — as an app, an API, and a library.**
 
-<details>
-  <summary>How it works</summary>
-  
-  - **Intuitive Interface**  
-    Our user-friendly interface makes the message encoding and decoding process easier. With just a few clicks, you can turn text into code and vice versa.
-  
-  - **Manual Codings**  
-    Support for different types of manual coding. Ideal for enthusiasts of traditional encryption and secure communication.
-</details>
+Encode and decode messages with Enigma, Morse, Polybius, Vigenère, Bacon, and
+more. Built for cryptography enthusiasts, learners, and developers who want to
+embed ciphers into their own projects.
 
-<details>
-  <summary>Technologies Used</summary>
-  
-  - **React.js**  
-    React.js technology provides a dynamic and responsive user experience, making interacting with our encoding and decoding tools fast and enjoyable.
-  
-  - **Conversion Algorithms**  
-    We implement efficient algorithms to convert messages into manual codes and decode them back to their original format.
-</details>
+[![License: MIT](https://img.shields.io/badge/License-MIT-lime.svg)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+[![npm](https://img.shields.io/npm/v/@zyther/scode-core.svg)](https://www.npmjs.com/package/@zyther/scode-core)
+
+[Web app](https://scode.zyther.dev) · [API](https://api.scode.zyther.dev) · [Docs](https://api.scode.zyther.dev/docs) · [npm](https://www.npmjs.com/package/@zyther/scode-core)
+
+</div>
+
+---
+
+## What is SCode
+
+SCode is a monorepo with **three pieces** that share one core:
+
+| Piece | What it is | Who it's for |
+| --- | --- | --- |
+| **[`web/`](./web)** | A React app for encoding/decoding in the browser. | Anyone curious about ciphers. |
+| **[`npm/`](./npm)** | `@zyther/scode-core` — the cipher engine as a TypeScript library. | Developers embedding ciphers in JS/TS projects. |
+| **[`api/`](./api)** | A Next.js HTTP API wrapping the core. | Apps in any language that need ciphers over HTTP. |
+
+Every cipher runs **entirely client-side** in the web app, and **statelessly** in
+the API. No accounts, no tracking, no data stored between requests.
+
+## Try it
+
+- **Web app** → [scode.zyther.dev](https://scode.zyther.dev)
+- **API playground** → [api.scode.zyther.dev/docs](https://api.scode.zyther.dev/docs)
+- **Install the library** → `npm install @zyther/scode-core`
+
+### Encode via API
+
+```bash
+curl -X POST https://api.scode.zyther.dev/api/encode \
+  -H "Content-Type: application/json" \
+  -d '{"message": "hello world", "pattern": "¬"}'
+```
+
+### Encode via library
+
+```ts
+import { encode, decode, format_str } from "@zyther/scode-core"
+
+const { encrypted, config, pattern } = encode({
+  message: format_str("hello world"),
+  pattern: "¬",       // Morse
+})
+
+const { message } = decode({ encrypted, pattern, config })
+// → "HELLOWORLD"
+```
+
+## The pattern system
+
+What makes SCode different from "just another cipher library": ciphers **compose**.
+
+A **pattern** is a string of cipher symbols applied in sequence. Chain them to
+layer encryption:
+
+```ts
+encode({ message: "meet me at dawn", pattern: "?|" })
+//                                             ││
+//                              Enigma ────────┘│
+//                              Vigenère ───────┘
+```
+
+Patterns are applied **right-to-left** (last symbol = innermost encoding), so
+decoding reverses the order automatically. The response includes a `config`
+string with whatever parameters are needed to decode — pass it back verbatim.
+
+| Symbol | Cipher | | Symbol | Cipher |
+| :---: | --- | --- | :---: | --- |
+| `$` | SCSimply (key) | | `\|` | Vigenère |
+| `¢` | SCSimply (key_m) | | `§` | Frama |
+| `@` | SCSimply (a_num) | | `₢` | Bacon |
+| `¬` | Morse | | `&` | Mutation — reciprocity |
+| `£` | Binary | | `~` | Mutation — decalation |
+| `#` | Polybius | | `:` | Order — reverse |
+| `*` | Navajo | | `°` | Order — random |
+| `?` | Enigma | | | |
+
+Symbols `@`, `*`, `#` are **restricted** — they only work at the end of a pattern.
+
+## Repository structure
+
+```
+scode/
+├── web/          React app (Vite + Tailwind)
+├── npm/          @zyther/scode-core — the cipher engine
+├── api/          Next.js HTTP wrapper around the core
+└── ...
+```
+
+The **core** is the source of truth for every cipher. The web app and the API
+both consume it — no duplicated logic.
+
+## Tech stack
+
+| | Web | Core | API |
+| --- | --- | --- | --- |
+| **Framework** | React 18 + Vite | TypeScript | Next.js 15 |
+| **Styling** | Tailwind | — | Tailwind |
+| **Validation** | — | — | Zod |
+| **Build** | Vite | tsup | Next |
+| **Docs** | — | — | Scalar (OpenAPI) |
+
+
+## Contributing
+
+Contributions are welcome — new ciphers, docs, bug reports, anything.
+
+1. Fork the repo
+2. Create a branch (`git checkout -b feat/my-cipher`)
+3. Commit your changes (`git commit -m 'feat: add X cipher'`)
+4. Push (`git push origin feat/my-cipher`)
+5. Open a Pull Request
+
+Please follow [Conventional Commits](https://www.conventionalcommits.org/).
+
+## License
+
+MIT © [Zyther Dev](https://zyther.dev)
+
+---
+
+<div align="center">
+
+Built with ♥ for cryptography.
+
+</div>
