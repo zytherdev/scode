@@ -80,7 +80,7 @@ npm run preview
 - [x] Pattern composition system
 - [x] Decode document export (PDF / Word / TXT)
 - [x] **Public API** — programmatic access to all ciphers
-- [x] **npm package** — `@scode/core` for use in any JS/TS project
+- [x] **npm package** — `@zyther/scode-core` for use in any JS/TS project
 - [ ] **CLI** — `scode encode --pattern "?" --message "hello"`
 - [ ] Plugin system for custom ciphers
 
