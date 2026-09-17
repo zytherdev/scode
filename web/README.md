@@ -74,16 +74,6 @@ npm run build
 npm run preview
 ```
 
-## Roadmap
-
-- [x] Web app with 13+ ciphers
-- [x] Pattern composition system
-- [x] Decode document export (PDF / Word / TXT)
-- [x] **Public API** — programmatic access to all ciphers
-- [x] **npm package** — `@zyther/scode-core` for use in any JS/TS project
-- [ ] **CLI** — `scode encode --pattern "?" --message "hello"`
-- [ ] Plugin system for custom ciphers
-
 ## Contributing
 
 Contributions are welcome — bug reports, new ciphers, docs, anything.
