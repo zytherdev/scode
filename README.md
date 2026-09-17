@@ -20,13 +20,14 @@ embed ciphers into their own projects.
 
 ## What is SCode
 
-SCode is a monorepo with **three pieces** that share one core:
+SCode is a monorepo with **four pieces** that share one core:
 
 | Piece | What it is | Who it's for |
 | --- | --- | --- |
 | **[`web/`](./web)** | A React app for encoding/decoding in the browser. | Anyone curious about ciphers. |
 | **[`npm/`](./npm)** | `@zyther/scode-core` — the cipher engine as a TypeScript library. | Developers embedding ciphers in JS/TS projects. |
 | **[`api/`](./api)** | A Next.js HTTP API wrapping the core. | Apps in any language that need ciphers over HTTP. |
+| **[`cli/`](./cli)** | `@zyther/scode-cli` — the `scd` command-line tool. | Terminal users, shell scripts, CI pipelines. |
 
 Every cipher runs **entirely client-side** in the web app, and **statelessly** in
 the API. No accounts, no tracking, no data stored between requests.
@@ -36,6 +37,7 @@ the API. No accounts, no tracking, no data stored between requests.
 - **Web app** → [scode.zyther.dev](https://scode.zyther.dev)
 - **API playground** → [api.scode.zyther.dev/docs](https://api.scode.zyther.dev/docs)
 - **Install the library** → `npm install @zyther/scode-core`
+- **Install the CLI** → `npm install -g @zyther/scode-cli`
 
 ### Encode via API
 
@@ -57,6 +59,13 @@ const { encrypted, config, pattern } = encode({
 
 const { message } = decode({ encrypted, pattern, config })
 // → "HELLOWORLD"
+```
+
+### Encode via CLI
+
+```bash
+scd encode "hello world" --pattern "¬"
+# → -.-. .... . .-.. .-.. ---
 ```
 
 ## The pattern system
@@ -97,6 +106,7 @@ scode/
 ├── web/          React app (Vite + Tailwind)
 ├── npm/          @zyther/scode-core — the cipher engine
 ├── api/          Next.js HTTP wrapper around the core
+├── cli/          @zyther/scode-cli — the `scd` command
 └── ...
 ```
 
@@ -105,13 +115,13 @@ both consume it — no duplicated logic.
 
 ## Tech stack
 
-| | Web | Core | API |
-| --- | --- | --- | --- |
-| **Framework** | React 18 + Vite | TypeScript | Next.js 15 |
-| **Styling** | Tailwind | — | Tailwind |
-| **Validation** | — | — | Zod |
-| **Build** | Vite | tsup | Next |
-| **Docs** | — | — | Scalar (OpenAPI) |
+| | Web | Core | API | CLI |
+| --- | --- | --- | --- | --- |
+| **Framework** | React 18 + Vite | TypeScript | Next.js 15 | commander |
+| **Styling** | Tailwind | — | Tailwind | picocolors |
+| **Validation** | — | — | Zod | — |
+| **Build** | Vite | tsup | Next | tsup |
+| **Docs** | — | — | Scalar (OpenAPI) | `--help` |
 
 
 ## Contributing

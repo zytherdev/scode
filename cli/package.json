@@ -1,0 +1,54 @@
+{
+  "name": "@zyther/scode-cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for encoding and decoding messages with classic ciphers.",
+  "license": "MIT",
+  "author": "Zyther Dev <zyther.dev@outlook.com>",
+  "homepage": "https://scode.zyther.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zytherdev/scode.git",
+    "directory": "cli"
+  },
+  "bugs": {
+    "url": "https://github.com/zytherdev/scode/issues"
+  },
+  "keywords": [
+    "cli",
+    "cipher",
+    "cryptography",
+    "enigma",
+    "morse",
+    "polybius",
+    "scode"
+  ],
+  "type": "module",
+  "bin": {
+    "scd": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "@zyther/scode-core": "^0.1.4",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

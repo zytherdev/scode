@@ -62,6 +62,7 @@ const PRODUCT_LINKS = [
   { name: "Encrypt", route: routes.encrypt },
   { name: "Decrypt", route: routes.decrypt },
   { name: "API", route: "https://api.scode.zyther.dev" },
+  { name: "CLI", route: "https://www.npmjs.com/package/@zyther/scode-cli" },
 ]
 
 export default function Footer() {
