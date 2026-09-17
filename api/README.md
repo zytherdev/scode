@@ -46,7 +46,8 @@ curl -X POST https://api.scode.zyther.dev/api/encode \
 {
   "encrypted": "-.-. .... . .-.. .-.. ---",
   "config": "",
-  "pattern": "¬"
+  "pattern": "¬",
+  "message": "HELLOWORLD"
 }
 ```
 
@@ -150,7 +151,7 @@ Returns metadata for every cipher available.
 | `:`    | Order — reverse           |      no      |
 | `°`    | Order — random            |     yes      |
 
-Symbols `&`, `~`, `:` are **restricted** — they can only appear at the end of a
+Symbols `#`, `*`, `@` are **restricted** — they can only appear at the end of a
 pattern.
 
 ## CORS

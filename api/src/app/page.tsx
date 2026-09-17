@@ -37,7 +37,8 @@ const CODE_EXAMPLE = `curl -X POST https://api.scode.zyther.dev/api/encode \\
 # → {
 #     "encrypted": "-.-. .... . .-.. .-.. ---",
 #     "config": "",
-#     "pattern": "¬"
+#     "pattern": "¬",
+#     "message": "HELLOWORLD"
 #   }`
 
 const version = '0.1.0'
