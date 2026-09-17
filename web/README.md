@@ -44,48 +44,6 @@ reverse the result, all from one expression.
 - **Tailwind CSS** for styling
 - **React Router** for navigation
 
-## Getting started
-
-### Prerequisites
-
-- Node.js 18+
-- npm, pnpm, or yarn
-
-### Install
-
-```bash
-git clone https://github.com/zytherdev/scode.git
-cd scode
-npm install
-```
-
-### Run
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173).
-
-### Build
-
-```bash
-npm run build
-npm run preview
-```
-
-## Contributing
-
-Contributions are welcome — bug reports, new ciphers, docs, anything.
-
-1. Fork the repo
-2. Create a branch (`git checkout -b feat/my-cipher`)
-3. Commit your changes (`git commit -m 'feat: add X cipher'`)
-4. Push (`git push origin feat/my-cipher`)
-5. Open a Pull Request
-
-Please follow the [Conventional Commits](https://www.conventionalcommits.org/) spec.
-
 ## License
 
 MIT © [Zyther Dev](https://zyther.dev)
